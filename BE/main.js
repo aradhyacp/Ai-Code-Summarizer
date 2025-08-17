@@ -30,7 +30,14 @@ app.post("/ai-summarizer", async (req, res) => {
       code: ${codeSent}`,
     });
 
-    res.json({ summary: response });
+    res.json({
+      response: response.text,
+      modelVersion: response.modelVersion,
+      promptTokenCount: response.usageMetadata.promptTokenCount,
+      candidatesTokenCount: response.usageMetadata.candidatesTokenCount,
+      totalTokenCount: response.usageMetadata.totalTokenCount,
+      thoughtsTokenCount: response.usageMetadata.thoughtsTokenCount,
+    });
   } catch (err) {
     console.error("Gemini error:", err);
     res.status(500).json({ error: "Something went wrong." });
