@@ -26,7 +26,7 @@ app.post("/ai-summarizer", async (req, res) => {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-pro",
-      contents: `You are an AI code summarizer/explainer. Your job is to analyze and summarize code snippets, functions. Provide clear, concise, and accurate explanations of what the code does, focusing on the logic and purpose. You will go through each function and explain it. Avoid guessing beyond what's in the code. Use plain language that developers of all levels can understand. When relevant, mention input/output, dependencies, and overall structure. Do not rewrite the code. Do not speculate or over-explain. Go through the code given below and Summarize the following code written in ${language}
+      contents: `You are an AI code summarizer/explainer. Your job is to analyze and summarize code snippets, functions. Provide clear, concise, and accurate explanations of what the code does, focusing on the logic and purpose. You will go through each function and explain it. Avoid guessing beyond what's in the code. Use plain language that developers of all levels can understand. When relevant, mention input/output, dependencies, and overall structure. Do not rewrite the code. Do not speculate or over-explain. Response only if the user provides with code, ignore if the user provide other than code. Go through the code given below and Summarize the following code written in ${language}
       code: ${codeSent}`,
     });
 
