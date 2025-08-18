@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Hero = () => {
   const [codeWritten, setCodeWritten] = useState("");
   const [language, setLanguage] = useState("javascript");
-  const [modelUsed, setModelUsed] = useState("gemini-2.5-pro")
+  const [modelUsed, setModelUsed] = useState("gemini-2.5-flash")
   const [isLoading,setisLoading] = useState(false);
   const [aiSummary, setAiSummary] = useState("");
   const [modelVersion,setmodelVersion] = useState("")
