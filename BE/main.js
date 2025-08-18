@@ -2,17 +2,26 @@ import express from "express";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
+import { z } from "zod";
+
 const app = express();
 const port = 3000;
 dotenv.config();
+app.use(express.json());
+app.use(cors());
 
 // const sys_prompt = "You are an AI code summarizer. Your job is to analyze and summarize code snippets, functions. Provide clear, concise, and accurate explanations of what the code does, focusing on the logic and purpose. Avoid guessing beyond what's in the code. Use plain language that developers of all levels can understand. When relevant, mention input/output, dependencies, and overall structure. Do not rewrite the code. Do not speculate or over-explain.Summarize the following"
+
+const aiSummarySchema = z.object({
+  language: z.string().min(1, "Language is required"),
+  codeSent: z.string().min(1, "Code is required"),
+  model: z.string().min(1, "Model is required"),
+});
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
-app.use(express.json());
-app.use(cors());
+
 
 app.get("/", (req, res) => {
   res.json({
@@ -21,7 +30,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/ai-summary", async (req, res) => {
-  const { language, codeSent, model } = req.body;
+  console.log("Incoming body:", req.body);
+  const parseResult = aiSummarySchema.safeParse(req.body);
+
+  if (!parseResult.success) {
+    return res.status(400).json({
+      error: "Invalid input",
+    });
+  }
+
+  const { language, codeSent, model } = parseResult.data;
 
   try {
     const response = await ai.models.generateContent({
@@ -45,7 +63,7 @@ app.post("/ai-summary", async (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(400).json({
+  return res.status(400).json({
     message: "internal server error ",
   });
   console.log(err);
