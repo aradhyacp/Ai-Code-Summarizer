@@ -3,6 +3,7 @@ import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import { z } from "zod";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 const port = 3000;
@@ -22,6 +23,16 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
 
+const limiter = rateLimit({
+  windowMs: 60000,
+  limit: 10,
+  message: {
+    error:
+      "Too many requests. Please try again later. Rate limiter is enabled for safety purposes. The limit is 10 requests per minute.",
+  },
+});
+
+app.use(limiter);
 
 app.get("/", (req, res) => {
   res.json({

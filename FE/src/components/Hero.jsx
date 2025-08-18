@@ -34,12 +34,12 @@ const Hero = () => {
           model: modelUsed,
         }),
       });
+      
+      const data = await res.json();
 
       if (!res.ok) {
-        throw new Error("Failed to generate comments");
+        throw new Error(`Failed to perform the action, ${data.error}`);
       }
-
-      const data = await res.json();
       setAiSummary(data.response);
       setmodelVersion(data.modelVersion);
       setpromptTokenCount(data.promptTokenCount);
@@ -47,8 +47,7 @@ const Hero = () => {
       settotalTokenCount(data.totalTokenCount);
       setthoughtsTokenCount(data.thoughtsTokenCount);
     } catch (error) {
-      console.error("Error generating comments:", error);
-      setAiSummary("// An error occurred while generating comments.");
+      setAiSummary(`// ${error}`);
     } finally {
       setisLoading(false);
       setGenerateFinish(true);
