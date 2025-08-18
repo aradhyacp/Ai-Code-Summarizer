@@ -19,7 +19,7 @@ const Header = () => {
           </svg>
         </div>
         <div className="text-white font-bold leading-tight tracking-[-0.015em] text-xl">
-          Code Summarizer
+          Ai Code Summarizer
         </div>
       </div>
       <div className="flex flex-row gap-4">
