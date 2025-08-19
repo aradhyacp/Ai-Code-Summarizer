@@ -12,6 +12,7 @@ const Hero = () => {
   const [totalTokenCount, settotalTokenCount] = useState("");
   const [thoughtsTokenCount, setthoughtsTokenCount] = useState("");
   const [generateFinish, setGenerateFinish] = useState(false);
+  const [modelResponseTime, setModelResponseTime] = useState(0);
 
   const handleOnChange = (e) => {
     setCodeWritten(e.target.value);
@@ -46,6 +47,7 @@ const Hero = () => {
       setcandidatesTokenCount(data.candidatesTokenCount);
       settotalTokenCount(data.totalTokenCount);
       setthoughtsTokenCount(data.thoughtsTokenCount);
+      setModelResponseTime(data.modelResponseTime);
     } catch (error) {
       setAiSummary(`// ${error}`);
     } finally {
@@ -117,8 +119,30 @@ const Hero = () => {
         </section>
 
         <section className="bg-slate-900/30 p-5 rounded-2xl border border-slate-800/60 flex flex-col w-[600px]">
-          <div className="mb-3 flex">
+          <div className="mb-3 flex flex-row justify-between items-center">
             <h2 className="text-lg font-medium text-white">Code Summary</h2>
+            { aiSummary && <div className="flex flex-row items-center gap-2">
+                <div className="size-4">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="far"
+                data-icon="gauge-max"
+                class="svg-inline--fa fa-gauge-max fa-fw "
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M256 464a208 208 0 1 0 0-416 208 208 0 1 0 0 416zM256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zm32 112a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM256 408c-30.9 0-56-25.1-56-56s25.1-56 56-56c10.3 0 19.9 2.8 28.2 7.6l110.2-75.4c10.9-7.5 25.9-4.7 33.4 6.3s4.7 25.9-6.3 33.4L311.3 343.2c.4 2.9 .7 5.8 .7 8.8c0 30.9-25.1 56-56 56zM384 160a32 32 0 1 1 -64 0 32 32 0 1 1 64 0zM112 224a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm80-64a32 32 0 1 1 -64 0 32 32 0 1 1 64 0z"
+                ></path>
+              </svg>
+            </div>
+            <span className="text-[#0d59f2]">{modelResponseTime}s</span>
+            </div>
+            
+            }
           </div>
 
           <div className="flex-1 overflow-auto border border-slate-800 rounded-lg p-4 bg-[#0a0d15] min-h-[400px]">
