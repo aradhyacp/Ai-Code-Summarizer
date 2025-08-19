@@ -12,8 +12,8 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z"
               fill="currentColor"
             ></path>
@@ -24,7 +24,7 @@ const Header = () => {
         </div>
       </div>
       <div className="flex flex-row gap-4">
-        <div class="flex items-center gap-9">
+        <div className="flex items-center gap-9">
           {headerLinks.map((links, index) => (
             <a
               className="relative group text-white text-sm font-medium leading-normal"
@@ -32,7 +32,7 @@ const Header = () => {
               key={index}
             >
               {links}
-              <span class="absolute left-0 -bottom-1 h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </div>
