@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Hero = () => {
   const [codeWritten, setCodeWritten] = useState("");
   const [language, setLanguage] = useState("javascript");
-  const [modelUsed, setModelUsed] = useState("gemini-2.5-flash");
+  const [modelUsed, setModelUsed] = useState("gemini-2.5-flash-lite");
   const [isLoading, setisLoading] = useState(false);
   const [aiSummary, setAiSummary] = useState("");
   const [modelVersion, setmodelVersion] = useState("");
@@ -34,7 +34,7 @@ const Hero = () => {
           model: modelUsed,
         }),
       });
-      
+
       const data = await res.json();
 
       if (!res.ok) {
