@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Markdown from 'react-markdown'
 
 const Hero = () => {
   const [codeWritten, setCodeWritten] = useState("");
@@ -59,8 +60,8 @@ const Hero = () => {
   return (
     <div className="min-h-screen mt-10 px-6">
       <div className="flex flex-row justify-center gap-10">
-        <section className="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 shadow-inner flex flex-col w-[600px]">
-          <form className="flex flex-col gap-4 flex-1" onSubmit={handleSubmit}>
+        <section className="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 shadow-inner flex flex-col w-[600px] max-h-fit">
+          <form className="flex flex-col gap-4 flex-1 max-h-fit" onSubmit={handleSubmit}>
             <label className="text-sm text-slate-300 flex items-center justify-between">
               <span>Paste your code</span>
             </label>
@@ -69,7 +70,7 @@ const Hero = () => {
               value={codeWritten}
               onChange={handleOnChange}
               placeholder={"Your code goes here"}
-              className="w-full flex-1 p-4 rounded-md bg-[#071019] border border-slate-800 text-sm font-mono text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none cursor-text min-h-[470px]"
+              className="w-full flex-1 p-4 rounded-md bg-[#071019] border border-slate-800 text-sm font-mono text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none cursor-text min-h-[470px] max-h-fit"
             />
 
             <div className="flex flex-row w-full gap-3">
@@ -148,7 +149,7 @@ const Hero = () => {
           <div className="flex-1 overflow-auto border border-slate-800 rounded-lg p-4 bg-[#0a0d15] min-h-[400px]">
             {aiSummary && aiSummary.trim() !== "" ? (
               <pre className="text-sm font-mono text-slate-200 whitespace-pre-wrap">
-                {aiSummary}
+                <Markdown>{aiSummary}</Markdown>
               </pre>
             ) : isLoading ? (
               <div className="h-full flex flex-col items-center justify-center text-center text-slate-500 py-16">
@@ -159,10 +160,10 @@ const Hero = () => {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-rotate-cw-icon lucide-rotate-cw"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-rotate-cw-icon lucide-rotate-cw"
                     >
                       <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
                       <path d="M21 3v5h-5" />
