@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/ai-summary", async (req, res) => {
-  console.log("Incoming body:", req.body);
+  const start = Date.now();
   const parseResult = aiSummarySchema.safeParse(req.body);
 
   if (!parseResult.success) {
@@ -59,6 +59,8 @@ app.post("/ai-summary", async (req, res) => {
       code: ${codeSent}`,
     });
 
+    const end = Date.now();
+    const modelResponseTime = ((end - start)/1000);
     res.json({
       response: response.text,
       modelVersion: response.modelVersion,
@@ -66,6 +68,7 @@ app.post("/ai-summary", async (req, res) => {
       candidatesTokenCount: response.usageMetadata.candidatesTokenCount,
       totalTokenCount: response.usageMetadata.totalTokenCount,
       thoughtsTokenCount: response.usageMetadata.thoughtsTokenCount,
+      modelResponseTime: modelResponseTime
     });
   } catch (err) {
     console.error("Gemini error:", err);
