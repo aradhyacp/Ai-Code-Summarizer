@@ -25,7 +25,7 @@ const ai = new GoogleGenAI({
 
 const limiter = rateLimit({
   windowMs: 60000,
-  limit: 10,
+  limit: 5,
   message: {
     error:
       "Too many requests. Please try again later. Rate limiter is enabled for safety purposes. The limit is 10 requests per minute.",
