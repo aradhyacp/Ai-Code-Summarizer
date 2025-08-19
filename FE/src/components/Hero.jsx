@@ -26,7 +26,7 @@ const Hero = () => {
     setAiSummary("");
 
     try {
-      const res = await fetch("http://localhost:3000/ai-summary", {
+      const res = await fetch("https://ai-code-summarizer.onrender.com/ai-summary", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

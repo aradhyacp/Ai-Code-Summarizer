@@ -75,3 +75,5 @@ junit-report.xml
 .eslintcache
 .prettiercache
 stylelint.log
+
+dist.*
