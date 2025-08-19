@@ -28,7 +28,7 @@ const limiter = rateLimit({
   limit: 5,
   message: {
     error:
-      "Too many requests. Please try again later. Rate limiter is enabled for safety purposes. The limit is 10 requests per minute.",
+      "Too many requests. Please try again later. Rate limiter is enabled for safety purposes. The limit is 5 requests per minute.",
   },
 });
 
