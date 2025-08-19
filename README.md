@@ -3,6 +3,11 @@
 A full-stack AI-powered application that takes in code from users, sends it to Google's Gemini API for summarization, and displays a human-readable explanation of the logic. It supports multiple languages and different Gemini models, with response metadata such as token counts and model latency.
 
 ---
+
+## Watch it live : 
+
+https://ai-code-summarizer.jack1337.serv00.net/
+
 ## ⚙️ Tech Stack
 
 ### Frontend
